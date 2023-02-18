@@ -1,0 +1,44 @@
+version: '3'
+
+volumes:
+  db-volume:
+
+services:
+  app:
+    container_name: perfect-php-shakyo-app
+    build:
+      context: ../
+      dockerfile: ./.runtime/app/Dockerfile
+    volumes:
+      - ../:/opt/project:cached
+      - ./app/shared_files/mount/usr/local/etc/php/conf.d/xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini:cached
+      - ./app/shared_files/mount/var/log/xdebug:/var/log/xdebug
+    working_dir: /opt/project
+    environment:
+      LANG: ja_JP.UTF-8
+      TZ: Asia/Tokyo
+      DATABASE_URL: mysql://app_user:secret@perfect-php-shakyo-db/app_db
+      PHP_IDE_CONFIG: serverName=perfect-php-shakyo-app
+  nginx:
+    image: nginx:alpine
+    container_name: perfect-php-shakyo-nginx
+    ports:
+      - "8081:80"
+    volumes:
+      - ..:/var/www/html
+      - ./nginx/shared_files/etc/nginx/conf.d/default.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - app
+  db:
+    image: mysql:8
+    container_name: perfect-php-shakyo-db
+    environment:
+      MYSQL_DATABASE: app_db
+      MYSQL_USER: app_user
+      MYSQL_PASSWORD: secret
+      MYSQL_ROOT_PASSWORD: 'rootsecret'
+    ports:
+      - "3342:3306"
+    volumes:
+      - db-volume:/var/lib/mysql:cached
+      - ./database/shared_files/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
