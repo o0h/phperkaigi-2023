@@ -114,7 +114,7 @@ class AccountController extends Controller
             $errors[] = 'パスワードを入力してください';
         }
 
-        if (count($errors)) {
+        if (count($errors) === 0) {
             $userRepository = $this->dbManager->get('User');
             $user = $userRepository->fetchByUserName($userName);
 
