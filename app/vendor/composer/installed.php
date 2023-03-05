@@ -3,7 +3,7 @@
         'name' => 'o0h/mini-blog',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => '5a410c0e59903902cceb290452aeeb74e059f813',
+        'reference' => '92f0ad2ab4e8e6cd840396febc823317ef2cab23',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -49,7 +49,7 @@
         'o0h/mini-blog' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => '5a410c0e59903902cceb290452aeeb74e059f813',
+            'reference' => '92f0ad2ab4e8e6cd840396febc823317ef2cab23',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

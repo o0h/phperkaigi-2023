@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace O0h\KantanFw\Http;
 
+use O0h\KantanFw\Database\Manager;
 use O0h\KantanFw\View\View;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseFactoryInterface;
@@ -18,6 +19,7 @@ abstract class Action
     public function __construct(
         readonly protected ServerRequestInterface $serverRequest,
         readonly protected ResponseFactoryInterface $responseFactory,
+        readonly protected Manager $dbManager,
         protected View $view
     ) {
     }

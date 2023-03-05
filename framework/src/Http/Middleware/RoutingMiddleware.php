@@ -23,11 +23,11 @@ class RoutingMiddleware implements MiddlewareInterface
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
         $request = $this->router->resolve($request);
+        /** @var class-string<Action> $action */
         $action = $request->getAttribute('action');
         if (!$action) {
             throw new NotFoundException();
         }
-        /** @var Action $action */
         $action = $this->resolveAction($action);
         $action->setRequest($request);
         /** @var ResponseFactoryInterface $responseFactory */
