@@ -20,9 +20,10 @@ class Emitter
             header: sprintf('HTTP/1.1 %d %s', $response->getStatusCode(), $response->getReasonPhrase()),
             response_code: $response->getStatusCode(),
         );
-        foreach ($response->getHeaders() as $header) {
-            [$headerField, $headerValue] = $header;
-            header($headerField . ': ' .$headerValue);
+        foreach ($response->getHeaders() as $headerField => $headerValues) {
+            foreach ($headerValues as $headerValue) {
+                header("{$headerField}: {$headerValue}");
+            }
         }
 
         echo $response->getBody();

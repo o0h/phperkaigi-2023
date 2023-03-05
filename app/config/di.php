@@ -14,7 +14,6 @@ return new \DI\Container(
         ContainerInterface::class  => DI\factory(fn () => $this),
         Emitter::class => DI\factory(fn () => new Emitter()),
         ServerRequestInterface::class => DI\factory(fn () => ServerRequestFactory::fromGlobals()),
-        View::class => DI\factory(fn () => new View(TEMPLATE_PATH)),
         \App\Application::class => DI\autowire(\App\Application::class),
         ResponseFactoryInterface::class => DI\factory(fn () => new \Laminas\Diactoros\ResponseFactory()),
         \Psr\Http\Message\StreamFactoryInterface::class => DI\factory(fn () => new \Laminas\Diactoros\StreamFactory()),
@@ -23,12 +22,11 @@ return new \DI\Container(
         \O0h\KantanFw\Database\Manager::class => function () {
             $manager = new \O0h\KantanFw\Database\Manager();
             $manager->connect('default', [
-                [
                     'dsn' => getenv('DATABASE_DSN'),
                     'user' => getenv('DATABASE_USER'),
                     'password' => getenv('DATABASE_PASSWORD'),
-                ]
             ]);
+            return $manager;
         },
         \App\Repository\StatusRepository::class => DI\factory(function (\DI\Container $container) {
             /** @var \O0h\KantanFw\Database\Manager $dbManager */
@@ -36,5 +34,12 @@ return new \DI\Container(
             $connection = $dbManager->getConnection('default');
             return new \App\Repository\StatusRepository($connection);
         }),
+        \App\Repository\UserRepository::class => DI\factory(function (\DI\Container $container) {
+            /** @var \O0h\KantanFw\Database\Manager $dbManager */
+            $dbManager = $container->get(\O0h\KantanFw\Database\Manager::class);
+            $connection = $dbManager->getConnection('default');
+            return new \App\Repository\UserRepository($connection);
+        }),
+        \O0h\KantanFw\Http\Action\ErrorAction::class => DI\autowire(\O0h\KantanFw\Http\Action\ErrorAction::class),
     ]
 );

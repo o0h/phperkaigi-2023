@@ -19,11 +19,11 @@ abstract class Repository
 
     public function fetch($sql, $params = [])
     {
-        return $this->execute($sql, $params)->fetch(PDO::FETCH_ASSOC);
+        return $this->execute($sql, $params)->fetch(\PDO::FETCH_ASSOC);
     }
 
     public function fetchAll($sql, $params = [])
     {
-        return $this->execute($sql, $params)->fetchAll(PDO::FETCH_ASSOC);
+        return $this->execute($sql, $params)->fetchAll(\PDO::FETCH_ASSOC);
     }
 }

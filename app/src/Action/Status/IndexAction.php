@@ -3,18 +3,31 @@
 namespace App\Action\Status;
 
 use App\Repository\StatusRepository;
-use O0h\KantanFw\Http\Action;
+use O0h\KantanFw\Http\Action\Action;
 
 class IndexAction extends Action
 {
-    public function __construct(private readonly StatusRepository)
+    private StatusRepository $repository;
+
+    public function depends(StatusRepository $repository)
     {
-        parent::__construct();
+        $this->repository = $repository;
     }
+
     public function __invoke()
     {
-        xdebug_break();
+        // $user = $this->session->get('user');
+        // $statuses = $this->dbManager->get('Status')
+        //     ->fetchAllPersonalArchivesByUserId($user['id']);
+
+        $statuses = $this->repository->fetchAllPersonalArchivesByUserId(1);
+
+        return $this->render([
+            'statuses' => $statuses,
+            'body' => '',
+            // FIXME: これはミドルウェアにやらせるかな
+            // '_token' => $this->generateCsrfToken('status/post'),
+            '_token' => 'tmp/dummy---',
+        ]);
     }
-
-
 }

@@ -8,6 +8,7 @@ use O0h\KantanFw\Http\Emitter;
 use O0h\KantanFw\Http\Middleware\AuthMiddleware;
 use O0h\KantanFw\Http\Middleware\ErrorHandlerMiddleware;
 use O0h\KantanFw\Http\Middleware\RoutingMiddleware;
+use O0h\KantanFw\Http\Middleware\SessionDecorationMiddleware;
 use Psr\Container\ContainerInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -27,6 +28,7 @@ class Application implements RequestHandlerInterface
      */
     protected $middlewares = [
         ErrorHandlerMiddleware::class,
+        SessionDecorationMiddleware::class,
         AuthMiddleware::class,
         RoutingMiddleware::class
     ];

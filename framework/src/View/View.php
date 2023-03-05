@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace O0h\KantanFw\View;
 
+use O0h\KantanFw\Http\Exception\MissingTemplateException;
+
 class View
 {
     protected array $layoutVariables = [];
@@ -22,9 +24,13 @@ class View
         $this->layoutVariables[$name] = $value;
     }
 
-    public function render(string $_path, array $_variables = [], bool $_layout = false): false|string
+    public function render(string $_path, array $_variables = [], string|false $_layout = false): false|string
     {
         $_file = $this->baseDir . '/' . $_path . '.php';
+        if (!file_exists($_file)) {
+            $errorMessage = sprintf('Template file "%s" is missing.', $_file);
+            throw new MissingTemplateException($errorMessage);
+        }
 
         extract(array_merge($this->defaults, $_variables));
 
@@ -36,7 +42,7 @@ class View
         $content = ob_get_clean();
 
         if ($_layout) {
-            $content = $this->render($_, [
+            $content = $this->render("layout/{$_layout}", [
                 ...$this->layoutVariables, ...['_content' => $content]
             ]);
         }

@@ -24,14 +24,14 @@ class Manager
             ...$params
         ];
 
-        $con = new PDO(
+        $con = new \PDO(
             $params['dsn'],
             $params['user'],
             $params['password'],
             $params['options'],
         );
 
-        $con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $con->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
 
         $this->connections[$name] = $con;
     }
@@ -42,7 +42,7 @@ class Manager
             return current($this->connections);
         }
 
-        return $this->connections['name'];
+        return $this->connections[$name];
     }
 
     public function setRepositoryConnectionMap($repositoryName, $name)
@@ -62,17 +62,17 @@ class Manager
         return $con;
     }
 
-    public function get($repostoryName)
+    public function get($repositoryName)
     {
-        if (!isset($this->repositories[$repostoryName])) {
-            $repositoryClass = $repostoryName . 'Repository';
-            $con = $this->getConnectionForRepository($repostoryName);
+        if (!isset($this->repositories[$repositoryName])) {
+            $repositoryClass = $repositoryName . 'Repository';
+            $con = $this->getConnectionForRepository($repositoryName);
 
             $repository = new $repositoryClass($con);
-            $this->repositories[$repostoryName] = $repository;
+            $this->repositories[$repositoryName] = $repository;
         }
 
-        return $this->repositories[$repostoryName];
+        return $this->repositories[$repositoryName];
     }
 
     public function __destruct()
