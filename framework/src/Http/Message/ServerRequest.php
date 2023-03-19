@@ -10,6 +10,18 @@ use Psr\Http\Message\UriInterface;
 
 class ServerRequest implements ServerRequestInterface
 {
+    private array $attributes = [];
+
+    public function __construct(
+        array $serverRequest = [],
+        private ?UriInterface $uri = null,
+        private ?StreamInterface $body = null,
+    ) {
+        if (!$this->uri) {
+            xdebug_break();
+        }
+    }
+
     public function getProtocolVersion()
     {
         // TODO: Implement getProtocolVersion() method.
@@ -87,7 +99,7 @@ class ServerRequest implements ServerRequestInterface
 
     public function getUri()
     {
-        // TODO: Implement getUri() method.
+        return $this->uri;
     }
 
     public function withUri(UriInterface $uri, $preserveHost = false)
@@ -142,21 +154,27 @@ class ServerRequest implements ServerRequestInterface
 
     public function getAttributes()
     {
-        // TODO: Implement getAttributes() method.
+        return $this->attributes;
     }
 
     public function getAttribute($name, $default = null)
     {
-        // TODO: Implement getAttribute() method.
+        return $this->attributes[$name] ?? $default;
     }
 
     public function withAttribute($name, $value)
     {
-        // TODO: Implement withAttribute() method.
+        $new = clone $this;
+        $new->attributes[$name] = $value;
+
+        return $new;
     }
 
     public function withoutAttribute($name)
     {
-        // TODO: Implement withoutAttribute() method.
+        $new = clone $this;
+        unset($new->attributes[$name]);
+
+        return $new;
     }
 }

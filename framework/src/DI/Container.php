@@ -22,6 +22,7 @@ class Container implements ContainerInterface
     private array $pool = [];
     public function __construct(array $configuration)
     {
+        $configuration[static::class . ':singleton'] = fn () => $this;
         foreach ($configuration as $key => $factory) {
             if (!str_contains($key, '|')) {
                 $key .= '|factory';
