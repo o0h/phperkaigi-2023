@@ -23,10 +23,10 @@ class Container implements ContainerInterface
     public function __construct(array $configuration)
     {
         foreach ($configuration as $key => $factory) {
-            if (!str_contains($key, ':')) {
-                $key .= ':factory';
+            if (!str_contains($key, '|')) {
+                $key .= '|factory';
             }
-            [$key, $strategy] = explode(':', $key);
+            [$key, $strategy] = explode('|', $key);
             $this->strategyMap[$key] = $strategy;
             $this->factoryMap[$key] = $factory;
         }

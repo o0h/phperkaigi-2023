@@ -57,7 +57,7 @@ class ContainerTest extends TestCase
     public function testGetSingleton(): void
     {
         $configuration = [
-            'now:singleton' => fn () => new \DateTimeImmutable(),
+            'now|singleton' => fn () => new \DateTimeImmutable(),
         ];
         $subject = new Container($configuration);
 
@@ -70,7 +70,7 @@ class ContainerTest extends TestCase
     public function testHas()
     {
         $configuration = [
-            'now:singleton' => fn () => new \DateTimeImmutable(),
+            'now|singleton' => fn () => new \DateTimeImmutable(),
         ];
         $subject = new Container($configuration);
 
