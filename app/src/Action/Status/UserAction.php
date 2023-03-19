@@ -9,7 +9,6 @@ use O0h\KantanFw\Http\Emitter;
 
 class UserAction extends Action
 {
-
     public function __invoke(string $userName)
     {
         xdebug_break();

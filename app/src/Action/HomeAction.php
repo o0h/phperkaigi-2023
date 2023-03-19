@@ -16,5 +16,4 @@ class HomeAction extends Action
 
         return $response;
     }
-
 }

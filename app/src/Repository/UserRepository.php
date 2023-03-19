@@ -1,6 +1,9 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Repository;
+
 use DbRepository;
 use O0h\KantanFw\Database\Repository;
 

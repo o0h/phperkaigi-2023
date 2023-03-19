@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Action\Status;
 
 use App\Repository\StatusRepository;
@@ -58,5 +60,4 @@ class PostAction extends Action
             '_token' => 'hogehoge token',
         ], 'index');
     }
-
 }

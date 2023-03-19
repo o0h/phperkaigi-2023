@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Action\Account;
 
 use App\Repository\UserRepository;
@@ -29,6 +31,4 @@ class SigninAction extends Action
             '_token' => 'dummyyyy',
         ]);
     }
-
-
 }

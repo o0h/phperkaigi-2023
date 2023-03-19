@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Repository;
 
 use O0h\KantanFw\Database\Repository;
@@ -65,5 +67,4 @@ class StatusRepository extends Repository
             ':user_name' => $userName,
         ]);
     }
-
 }

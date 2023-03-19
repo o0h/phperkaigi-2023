@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Action\Account;
 
 use App\Repository\UserRepository;
@@ -69,7 +71,5 @@ class AuthenticateAction extends Action
             // '_token' => $this->generateCsrfToken('account/signin'),
             '_token' => 'dummy-token',
         ], 'signin');
-
     }
-
 }
