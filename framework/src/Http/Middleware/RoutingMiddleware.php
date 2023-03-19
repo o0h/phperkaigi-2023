@@ -38,6 +38,8 @@ class RoutingMiddleware implements MiddlewareInterface
             throw new NotFoundException();
         }
         $action = $this->resolveAction($action);
+        assert(is_callable($action));
+
         $action->setRequest($request);
         /** @var ResponseFactoryInterface $responseFactory */
         $action->setResponse($this->responseFactory->createResponse());

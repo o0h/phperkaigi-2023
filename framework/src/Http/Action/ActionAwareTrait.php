@@ -14,11 +14,11 @@ trait ActionAwareTrait
      */
     private function resolveAction(string $action): Action
     {
-        /** @var Action $action */
-        $action = $this->container->get($action);
-        $this->injectActionDependencies($action);
+        /** @var Action $instance */
+        $instance = $this->container->get($action);
+        $this->injectActionDependencies($instance);
 
-        return $action;
+        return $instance;
     }
 
     /**
