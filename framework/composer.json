@@ -11,6 +11,12 @@
             "src/functions.php"
         ]
     },
+    "autoload-dev": {
+        "psr-4": {
+            "O0h\\KantanFw\\Test\\Case\\": "tests/cases/",
+            "O0h\\KantanFw\\Test\\App\\": "tests/app/src/"
+        }
+    },
     "scripts": {
         "stan": "phpstan analyze --xdebug",
         "cs": "php-cs-fixer fix --dry-run",
