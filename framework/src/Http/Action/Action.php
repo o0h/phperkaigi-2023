@@ -61,7 +61,6 @@ abstract class Action
     {
         xdebug_break();
         return true;
-
     }
 
     public function render(array $variables, string $template = null, string|false $layout = 'default'): ResponseInterface
@@ -86,9 +85,9 @@ abstract class Action
             return $this->template;
         }
         $action = get_class($this);
-        $paths = array_slice(explode('\\', $action), array_search('Action', explode('\\', $action)) + 1);
+        $paths = array_slice(explode('\\', $action), array_search('Action', explode('\\', $action), true) + 1);
         $action = array_pop($paths);
-        $template = substr(lcfirst($action), 0,  -6);
+        $template = substr(lcfirst($action), 0, -6);
 
         return implode('/', [...$paths, $template]);
     }

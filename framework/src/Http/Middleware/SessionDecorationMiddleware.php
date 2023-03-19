@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace O0h\KantanFw\Http\Middleware;
 
 use O0h\KantanFw\Http\Session;
@@ -16,5 +18,4 @@ class SessionDecorationMiddleware implements MiddlewareInterface
 
         return $handler->handle($request);
     }
-
 }

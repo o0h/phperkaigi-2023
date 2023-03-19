@@ -1,6 +1,9 @@
 <?php
 
+declare(strict_types=1);
+
 namespace O0h\KantanFw\Http;
+
 class Session
 {
     protected static $sessionStarted = false;

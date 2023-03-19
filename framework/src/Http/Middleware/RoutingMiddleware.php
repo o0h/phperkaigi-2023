@@ -22,7 +22,8 @@ class RoutingMiddleware implements MiddlewareInterface
     public function __construct(
         private readonly Router $router,
         private readonly ResponseFactoryInterface $responseFactory,
-        private readonly ContainerInterface $container)
+        private readonly ContainerInterface $container
+    )
     {
     }
 
@@ -57,5 +58,4 @@ class RoutingMiddleware implements MiddlewareInterface
             default => ''
         };
     }
-
 }
