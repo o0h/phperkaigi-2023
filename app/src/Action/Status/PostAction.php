@@ -23,7 +23,7 @@ class PostAction extends Action
     {
         $request = $this->getRequest();
         $session = $request->getAttribute('session');
-        if (!$request->isPost()) {
+        if ($request->getMethod() !== 'POST') {
             throw new NotFoundException();
         }
 
@@ -58,6 +58,6 @@ class PostAction extends Action
             'statuses' => $statuses,
             // '_token' => $this->generateCsrfToken('status/post'),
             '_token' => 'hogehoge token',
-        ], 'index');
+        ], 'Status/index');
     }
 }
