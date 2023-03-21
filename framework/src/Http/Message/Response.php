@@ -5,17 +5,24 @@ declare(strict_types=1);
 namespace O0h\KantanFw\Http\Message;
 
 use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\StreamInterface;
 
 class Response implements ResponseInterface
 {
+
+    private string $protocolVersion;
+
     public function getProtocolVersion()
     {
-        // TODO: Implement getProtocolVersion() method.
+        return $this->protocolVersion;
     }
 
     public function withProtocolVersion($version)
     {
-        // TODO: Implement withProtocolVersion() method.
+        $new = clone $this;
+        $new->protocolVersion = $version;
+
+        return $new;
     }
 
     public function getHeaders()

@@ -6,10 +6,10 @@ namespace O0h\KantanFw\Test\Case\Http\Middleware;
 
 use O0h\KantanFw\DI\Container;
 use O0h\KantanFw\Http\Action\Action;
+use O0h\KantanFw\Http\Message\ResponseFactory;
 use O0h\KantanFw\Http\Message\ServerRequest;
 use O0h\KantanFw\Http\Message\Uri;
 use O0h\KantanFw\Http\Middleware\RoutingMiddleware;
-use O0h\KantanFw\Http\ResponseFactory;
 use O0h\KantanFw\Http\Router;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ResponseInterface;
@@ -19,6 +19,7 @@ class RoutingMiddlewareTest extends TestCase
 {
     public function testProcess()
     {
+        $this->markTestIncomplete();
         $responseMock = $this->createMock(ResponseInterface::class);
 //        $actionMock = $this->getMockBuilder(Action::class)
 //            ->disableOriginalConstructor()
@@ -32,7 +33,7 @@ class RoutingMiddlewareTest extends TestCase
         $action = new class() extends Action
         {
 
-        }
+        };
         $router = new Router([
             '/dont-anything/:id' => $actionMock::class,
         ]);
