@@ -1,0 +1,29 @@
+{
+    "name": "o0h/mini-blog",
+    "description": "PHPerKaigi 2023発表の題材となるフレームワークを利用したアプリケーションです",
+    "type": "project",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "o0h",
+            "email": "dev@o0h.in"
+        }
+    ],
+    "repositories": [
+        {
+            "type": "path",
+            "url": "../framework"
+        }
+    ],
+    "require": {
+        "o0h/kantan-fw": "dev-main"
+    },
+    "config": {
+        "sort-packages": true
+    }
+}

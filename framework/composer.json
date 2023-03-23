@@ -1,0 +1,55 @@
+{
+    "name": "o0h/kantan-fw",
+    "description": "PHPerKaigi 2023発表の題材となるフレームワークです",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "O0h\\KantanFw\\": "src/"
+        },
+        "files":[
+            "src/functions.php"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "O0h\\KantanFw\\Test\\": "tests/",
+            "O0h\\KantanFw\\Test\\App\\": "tests/app/src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "o0h",
+            "email": "dev@o0h.in"
+        }
+    ],
+    "config": {
+        "sort-packages": true,
+        "allow-plugins": {
+            "phpstan/extension-installer": true
+        }
+    },
+    "scripts": {
+        "test": "phpunit",
+        "stan": "phpstan --xdebug",
+        "cs": "php-cs-fixer fix --dry-run",
+        "cs-fix": "php-cs-fixer fix"
+    },
+    "require": {
+        "ext-pdo": "*",
+        "psr/container": "^2.0",
+        "psr/http-factory": "^1.0",
+        "psr/http-message": "^1.0",
+        "psr/http-server-handler": "^1.0",
+        "psr/http-server-middleware": "^1.0"
+    },
+    "require-dev": {
+        "ext-pdo_sqlite": "*",
+        "friendsofphp/php-cs-fixer": "@stable",
+        "koriym/printo": "@stable",
+        "phpstan/extension-installer": "^1.2",
+        "phpstan/phpstan": "@stable",
+        "phpstan/phpstan-phpunit": "^1.3",
+        "phpunit/phpunit": "^10.0"
+    }
+}

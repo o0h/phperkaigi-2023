@@ -1,0 +1,20 @@
+<phpunit
+        bootstrap="tests/bootstrap.php"
+        failOnWarning="true"
+        displayDetailsOnTestsThatTriggerWarnings="true"
+>
+    <testsuites>
+        <testsuite name="kantan-fw">
+            <directory>tests/Case</directory>
+            <directory>tests/phpt</directory>
+        </testsuite>
+    </testsuites>
+    <coverage>
+        <include>
+            <directory suffix=".php">src</directory>
+        </include>
+    </coverage>
+    <extensions>
+        <bootstrap class="O0h\KantanFw\Test\Asset\PHPUnitExtension"/>
+    </extensions>
+</phpunit>
