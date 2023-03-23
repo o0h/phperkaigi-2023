@@ -17,7 +17,9 @@ services:
     environment:
       LANG: ja_JP.UTF-8
       TZ: Asia/Tokyo
-      DATABASE_URL: mysql://app_user:secret@perfect-php-shakyo-db/app_db
+      DATABASE_DSN: mysql:dbname=app_db;host=perfect-php-shakyo-db
+      DATABASE_USER: app_user
+      DATABASE_PASSWORD: secret
       PHP_IDE_CONFIG: serverName=perfect-php-shakyo-app
   nginx:
     image: nginx:alpine
